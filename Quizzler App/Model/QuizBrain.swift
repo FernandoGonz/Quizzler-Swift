@@ -9,7 +9,9 @@ import Foundation
 
 struct QuizBrain {
     
-    var questionNumber: Int = 0
+    private var questionNumber: Int = 0
+    
+    private var score: Int = 0
     
     private let questionsArray: [Question] = [
         Question(question: "A slug's blood is green.", answer: true),
@@ -26,16 +28,59 @@ struct QuizBrain {
         Question(question: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", answer: true)
     ]
     
-    func getQuestion() -> String {
-        return questionsArray[questionNumber].question
+    /** Restart the index of the Quizz.*/
+    mutating func restartIndex() {
+        self.questionNumber = 0
+        self.score = 0
     }
     
+    /** Get the next question of the Quizz */
+    mutating func nextQuestion() {
+        if self.getCurrentIndex() + 1 < self.getCount() {
+            self.questionNumber += 1
+        } else {
+            self.restartIndex()
+        }
+    }
+    
+    /** Get the current index of the Quizz. An Int is returned.*/
+    func getCurrentIndex() -> Int {
+        return self.questionNumber
+    }
+    
+    /** This method alow us to get the next question of the Quizz. A String is returned.*/
+    func getQuestionText() -> String {
+        return self.questionsArray[self.questionNumber].question
+    }
+    
+    /** This method alow us to get de count of the Quizz. An Integer is returned. */
     func getCount() -> Int {
-        return questionsArray.count
+        return self.questionsArray.count
     }
     
-    func checkAnswer(answer: Bool) -> Bool {
-        return answer == questionsArray[questionNumber].answer ? true : false
+    /** This method validates if the answer's user is correct. An answer: Bool is required. A Bool is returned. */
+    mutating func checkAnswer(answer: Bool) -> Bool {
+        // We need to check if is rigth, the score needs to up one
+        
+        if answer == self.questionsArray[self.questionNumber].answer {
+            self.score += 1
+            return true
+        } else {
+            return false
+        }
+        
+        /* return answer == self.questionsArray[self.questionNumber].answer ? true : false */
+        
+    }
+    
+    /** Get the progress from the Quizz. A Float is returned. */
+    func getProgress() -> Float {
+        return (Float(self.questionNumber + 1) / Float(self.getCount()))
+    }
+    
+    /** Method to get the score from the Quiz. A String is returned. */
+    func getScore() -> Int {
+        return score
     }
     
     
