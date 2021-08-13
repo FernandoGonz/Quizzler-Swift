@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,9 @@
                                         <state key="normal" title="True">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N7d-E5-X1i"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u46-Kh-SDH">
                                         <rect key="frame" x="0.0" y="728" width="374" height="80"/>
@@ -44,12 +48,17 @@
                                         <state key="normal" title="False">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z7K-T1-aXy"/>
+                                        </connections>
                                     </button>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WzN-JA-TPZ">
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="WzN-JA-TPZ">
                                         <rect key="frame" x="0.0" y="808" width="374" height="11"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="lLs-NZ-2Wq"/>
                                         </constraints>
+                                        <color key="progressTintColor" red="0.74731218129999999" green="0.34401537780000002" blue="0.75206448329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="trackTintColor" systemColor="systemGrayColor"/>
                                     </progressView>
                                 </subviews>
                             </stackView>
@@ -72,6 +81,12 @@
                             <constraint firstAttribute="trailing" secondItem="GiC-LM-uUw" secondAttribute="trailing" id="p0H-1b-tVV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="falseButton" destination="u46-Kh-SDH" id="Hek-XE-Cot"/>
+                        <outlet property="progressBar" destination="WzN-JA-TPZ" id="cIc-MC-rFh"/>
+                        <outlet property="questionLabel" destination="8M4-ta-9un" id="ADQ-v9-1dB"/>
+                        <outlet property="trueButton" destination="49c-lm-TFy" id="wLz-0c-iy9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,5 +95,8 @@
     </scenes>
     <resources>
         <image name="Background-Bubbles" width="117" height="34"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
